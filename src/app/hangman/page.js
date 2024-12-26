@@ -41,6 +41,12 @@ export default function Hangman() {
         setDisplayWords(Array(len).fill('_'));
     }, [word]);
 
+    useEffect(() => {
+        if (displayWords.length > 0 && !displayWords.includes('_')) {
+            alert("Congratulations! You've won the game!");
+        }
+    }, [displayWords])
+
     const display = () => displayWords.join(' ');
 
     const handleReset = async () => {
@@ -79,10 +85,6 @@ export default function Hangman() {
                 }
             }
             setDisplayWords(newDisplay);
-
-            if (!displayWords.includes('_')) {
-                alert("Congratulations! You've won the game!");
-            }
         } 
         else {
             setIncorrectGuess((prev) => {
@@ -93,6 +95,7 @@ export default function Hangman() {
                 return newIncorrectGuess;
             });
         }
+        
     };
 
     return (
