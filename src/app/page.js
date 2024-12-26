@@ -2,6 +2,20 @@
 import * as React from 'react';
 import {Box,Grid, Button } from '@mui/material';
 import {useState} from 'react';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+
+const theme = createTheme({
+  breakpoints: {
+    values: {
+      xs: 0,
+      cs: 275,      
+      sm: 525,    // Small devices (default is 600)
+      md: 730,  
+      lg: 1280,   
+      xl: 1920,   
+    },
+  },
+});
 
 
 
@@ -68,9 +82,20 @@ export default function Home() {
       gap="10px"
     >
      
-     <Box width = "40%" aspectRatio = '1 / 1' bgcolor="#fff" display="flex" flexDirection="column" >
+     <Box width = "40%" aspectRatio = '1/1' bgcolor="#fff" display="flex" flexDirection="column" >
         <Grid
-         container spacing={2}
+         container 
+         spacing ={2}
+         sx ={{
+          height :{
+            xs: '80%',
+            cs: '80%', // Font size for small screens
+            sm: '80%', // Medium screens
+            md: '80%',
+            lg: '80%',
+            xl: '80%',
+          }
+         }}
         >
           {Array.from({length:9}).map((_,index)=>
             (
@@ -92,11 +117,11 @@ export default function Home() {
                     position="absolute"
                     top="10%"
                     left="25%"
-                    //bgcolor="#457"
                     transform="translate(-50%, -50%)" // Centers this box perfectly
                     sx={{
                       fontSize: {
-                        xs: '30px', // Font size for small screens
+                        xs: '20px',
+                        cs: '30px', // Font size for small screens
                         sm: '75px', // Medium screens
                         md: '100px', // Large screens
                       },
