@@ -1,8 +1,8 @@
 'use client'
 import * as React from 'react';
-import { styled } from '@mui/material/styles';
 import {Box,Grid, Button } from '@mui/material';
 import {useState} from 'react';
+
 
 
 
@@ -59,6 +59,7 @@ export default function Home() {
     
     <Box
       width = "100vw"
+      height = "100vh"
       bgcolor = "#aaa"
       display={'flex'}
       justifyContent='center'
@@ -67,42 +68,67 @@ export default function Home() {
       gap="10px"
     >
      
-     <Box width = "40%" height ="88%" bgcolor="#fff" display="flex" flexDirection="column" >
+     <Box width = "40%" aspectRatio = '1 / 1' bgcolor="#fff" display="flex" flexDirection="column" >
         <Grid
          container spacing={2}
         >
           {Array.from({length:9}).map((_,index)=>
             (
               <Grid item xs={4} key={index}>
-                <Box                  
+                <Box
                   width="100%"
                   height="0"
-                  paddingTop="100%" // This maintains a square aspect ratio
-                  position="relative"
-                  display ="flex"
+                  paddingTop="100%" // Maintains square aspect ratio
+                  position="relative" // Ensures the innermost box centers relative to this parent
+                  display="flex"
                   bgcolor="#eee"
-                  alignItems='center'
-                  textAlign='center'
-                  justifyContent='center'
+                  alignItems="center"
+                  textAlign="center"
+                  justifyContent="center"
                   border="1px solid #000"
-                  onClick ={()=>handleClicked(index) }
-                  sx={{lineHeight:"30px",}}
+                  onClick={() => handleClicked(index)}
                 >
-                  <Box position='absolute' 
-                  top="40%"
-                  left="28%"
-                  transform="translate(-50%, -50%)" 
-                   fontSize={'100px'}
-                   
-                   >
-                    {clicked[index]}</Box>
+                  <Box
+                    position="absolute"
+                    top="10%"
+                    left="25%"
+                    //bgcolor="#457"
+                    transform="translate(-50%, -50%)" // Centers this box perfectly
+                    sx={{
+                      fontSize: {
+                        xs: '30px', // Font size for small screens
+                        sm: '75px', // Medium screens
+                        md: '100px', // Large screens
+                      },
+                      textAlign: 'center',
+                    }}
+                  >
+                    {clicked[index]}
+                  </Box>
                 </Box>
               </Grid>
             )
           )}
         </Grid>
      </Box>
-     <Button variant="contained" size="large" onClick={handleReset}>Reset</Button>
+     <Button 
+      variant="contained" 
+      sx={{
+        width: {
+          xs: '50vw', // Small screens
+          sm: '30vw', // Medium screens
+          md: '20vw', // Larger screens
+        },
+        fontSize: {
+          xs: '12px',
+          sm: '14px',
+          md: '16px',
+        },
+      }} 
+      onClick={handleReset}
+     >
+     Reset
+     </Button>
     </Box>
   );
 }
